@@ -7,10 +7,7 @@ export async function managerProcess(value, opts = {}) {
   // hop: maybe do more transforms — we keep value as-is for clarity
   const v = value;
 
-  if (opts.secure) {
-    // safe parameterized database call (secure sink)
-    return safeParameterizedQuery(v);
-  }
+
 
   if (opts.xssBad) {
     // deliberately call bad XSS sink
@@ -19,6 +16,11 @@ export async function managerProcess(value, opts = {}) {
 
   if (opts.xssSafe) {
     return xssSafeSink(v);
+  }
+
+  if (opts.secure) {
+    // safe parameterized database call (secure sink)
+    return safeParameterizedQuery(v);
   }
 
   // default: unsafe DB call reachable via long chain
@@ -30,3 +32,4 @@ export async function managerProcess(value, opts = {}) {
     return [];
   }
 }
+
