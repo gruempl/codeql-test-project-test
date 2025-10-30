@@ -8,21 +8,7 @@ export async function managerProcess(value, opts = {}) {
   const v = value;
 
 
-/*
-  if (opts.xssBad) {
-    // deliberately call bad XSS sink
-    return xssBadSink(v);
-  }
 
-  if (opts.xssSafe) {
-    return xssSafeSink(v);
-  }
-
-  if (opts.secure) {
-    // safe parameterized database call (secure sink)
-    return safeParameterizedQuery(v);
-  }
-*/
   // default: unsafe DB call reachable via long chain
   // simulate some conditional that is true at runtime
   if (v && v.length > 0) {
@@ -32,5 +18,6 @@ export async function managerProcess(value, opts = {}) {
     return [];
   }
 }
+
 
 
